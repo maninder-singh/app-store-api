@@ -1,0 +1,48 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Get all app list
+GET     /apps                       controllers.AppStore.apps
+
+# Get the app details
+GET     /apps/:id                   controllers.AppStore.details(id: Int)
+
+# Get all users
+GET     /users                      controllers.AppStore.users
+
+# Get comments of app
+GET     /comments/:appId            controllers.AppStore.comments(appId: Int)
+
+# Add new User
+POST    /users/add                  controllers.AppStore.addUser
+
+# Add new app into store
+POST    /apps/add                   controllers.AppStore.addApp
+
+# Add new comment into app
+POST    /comments/add               controllers.AppStore.addComment
+
+# Update user
+POST    /users/update               controllers.AppStore.updateUser
+
+# Update app details
+POST    /apps/update                controllers.AppStore.updateApp
+
+# Update comment of app
+POST    /comments/update            controllers.AppStore.updateComment
+
+# Delete user
+POST    /users/delete               controllers.AppStore.deleteUser
+
+# Delete comment
+POST    /comments/delete            controllers.AppStore.deleteComment
+
+# Delete App
+POST    /apps/delete                controllers.AppStore.deleteApp

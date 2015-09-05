@@ -1,0 +1,40 @@
+# Fetch All app list
+curl -v http://localhost:9000/apps
+
+# Fetch app detail based on id
+curl -v http://localhost:9000/apps/{app_id}
+
+# Fetch all users
+curl -v http://localhost:9000/users
+
+# Fetch list of comments on paticular app
+curl -v http://localhost:9000/comments/{app_id}
+
+# Add new user
+curl --header "Content-type: application/json" --request POST --data '{"id" : 0,"name" : "post-name","email":"post-email","contactNo":"2323232"}' -v http://localhost:9000/addUser
+
+# Add new app
+curl --header "Content-type: application/json" --request POST --data '{"id":0,"name":"App 11","description":"App 11","rating":0,"developedBy":{"id":1,"name":"maninder singh","email":"maninder.singh@gmail.com","contactNo":"123123123"}}' -v http://localhost:9000/apps/add
+
+# Add new comment to app
+curl --header "Content-type: application/json" --request POST --data '{"id":0,"appId":11,"content":"intial comment to app","commentBy":{"id":1,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/comments/add
+
+# Update user
+curl --header "Content-type: application/json" --request POST --data  '{"id":1,"name":"manindersingh","email":"maninder.singh@gmail.com","contactNo":"123"}' -v http://localhost:9000/users/update
+
+# Update app
+curl --header "Content-type: application/json" --request POST --data '{"id":11,"name":"App 11","description":"update App 11 from post request ","rating":0,"developedBy":{"id":1,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/apps/update
+
+# Update comment of app
+curl --header "Content-type: application/json" --request POST --data '{"id":0,"appId":11,"content":"update comment of app from post request ","commentBy":{"id":1,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/comments/update
+
+# Delete user
+curl --header "Content-type: application/json" --request POST --data  '{"id":8}' -v http://localhost:9000/users/delete
+
+# Delete apps
+curl --header "Content-type: application/json" --request POST --data  '{"id":11}' -v http://localhost:9000/apps/delete
+
+# Delete comments
+curl --header "Content-type: application/json" --request POST --data  '{"id":8}' -v http://localhost:9000/comments/delete
+
+
