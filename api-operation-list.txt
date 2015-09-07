@@ -29,12 +29,12 @@ curl --header "Content-type: application/json" --request POST --data '{"id":11,"
 curl --header "Content-type: application/json" --request POST --data '{"id":0,"appId":11,"content":"update comment of app from post request ","commentBy":{"id":1,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/comments/update
 
 # Delete user
-curl --header "Content-type: application/json" --request POST --data  '{"id":8}' -v http://localhost:9000/users/delete
+curl --request DELETE -v http://localhost:9000/users/delete/8
 
 # Delete apps
-curl --header "Content-type: application/json" --request POST --data  '{"id":11}' -v http://localhost:9000/apps/delete
+curl --request DELETE -v http://localhost:9000/apps/delete/11
 
 # Delete comments
-curl --header "Content-type: application/json" --request POST --data  '{"id":8}' -v http://localhost:9000/comments/delete
+curl --request DELETE -v http://localhost:9000/comments/delete/8
 
 
