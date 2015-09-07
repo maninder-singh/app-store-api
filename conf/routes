@@ -30,13 +30,13 @@ POST    /apps/add                   controllers.AppStore.addApp
 POST    /comments/add               controllers.AppStore.addComment
 
 # Update user
-POST    /users/update               controllers.AppStore.updateUser
+PUT     /users/update               controllers.AppStore.updateUser
 
 # Update app details
-POST    /apps/update                controllers.AppStore.updateApp
+PUT     /apps/update                controllers.AppStore.updateApp
 
 # Update comment of app
-POST    /comments/update            controllers.AppStore.updateComment
+PUT     /comments/update            controllers.AppStore.updateComment
 
 # Delete user
 DELETE  /users/delete/:id           controllers.AppStore.deleteUser(id : Int)
