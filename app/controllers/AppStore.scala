@@ -83,30 +83,18 @@ class AppStore extends Controller {
     }
   }
 
-  def deleteApp = Action(parse.json) {
-    request => (request.body \ "id").asOpt[Int].map { id =>
+  def deleteApp(id : Int) = Action {
       AppDao.deleteApp(id)
       Ok(Json.obj("message" -> "App deleted successfully","status" -> "ok"))
-    }.getOrElse {
-      BadRequest(Json.obj("message" -> "Unable to delete app","status" -> "fail"))
-    }
   }
 
-  def deleteUser = Action(parse.json) {
-    request => (request.body \ "id").asOpt[Int].map { id =>
+  def deleteUser(id : Int) = Action {
       UserDao.deleteUser(id)
       Ok(Json.obj("message" -> "User deleted successfully","status" -> "ok"))
-    }.getOrElse {
-      BadRequest(Json.obj("message" -> "Unable to delete user","status" -> "fail"))
-    }
   }
 
-  def deleteComment = Action(parse.json) {
-    request => (request.body \ "id").asOpt[Int].map { id =>
+  def deleteComment(id : Int) = Action {
       CommentDao.deleteComment(id)
       Ok(Json.obj("message" -> "Comment deleted successfully","status" -> "ok"))
-    }.getOrElse {
-      BadRequest(Json.obj("message" -> "Unable to delete comment","status" -> "fail"))
-    }
   }
 }

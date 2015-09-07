@@ -39,10 +39,10 @@ POST    /apps/update                controllers.AppStore.updateApp
 POST    /comments/update            controllers.AppStore.updateComment
 
 # Delete user
-POST    /users/delete               controllers.AppStore.deleteUser
+DELETE  /users/delete/:id           controllers.AppStore.deleteUser(id : Int)
 
 # Delete comment
-POST    /comments/delete            controllers.AppStore.deleteComment
+DELETE  /comments/delete/:id        controllers.AppStore.deleteComment(id : Int)
 
 # Delete App
-POST    /apps/delete                controllers.AppStore.deleteApp
+DELETE  /apps/delete/:id            controllers.AppStore.deleteApp(id : Int)
