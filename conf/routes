@@ -21,28 +21,28 @@ GET     /users                      controllers.AppStore.users
 GET     /comments/:appId            controllers.AppStore.comments(appId: Int)
 
 # Add new User
-POST    /users/add                  controllers.AppStore.addUser
+POST    /users                      controllers.AppStore.addUser
 
 # Add new app into store
-POST    /apps/add                   controllers.AppStore.addApp
+POST    /apps                       controllers.AppStore.addApp
 
 # Add new comment into app
-POST    /comments/add               controllers.AppStore.addComment
+POST    /comments                   controllers.AppStore.addComment
 
 # Update user
-PUT     /users/update               controllers.AppStore.updateUser
+PUT     /users                      controllers.AppStore.updateUser
 
 # Update app details
-PUT     /apps/update                controllers.AppStore.updateApp
+PUT     /apps                       controllers.AppStore.updateApp
 
 # Update comment of app
-PUT     /comments/update            controllers.AppStore.updateComment
+PUT     /comments                   controllers.AppStore.updateComment
 
 # Delete user
-DELETE  /users/delete/:id           controllers.AppStore.deleteUser(id : Int)
+DELETE  /users/:id                  controllers.AppStore.deleteUser(id : Int)
 
 # Delete comment
-DELETE  /comments/delete/:id        controllers.AppStore.deleteComment(id : Int)
+DELETE  /comments/:id               controllers.AppStore.deleteComment(id : Int)
 
 # Delete App
-DELETE  /apps/delete/:id            controllers.AppStore.deleteApp(id : Int)
+DELETE  /apps/:id                   controllers.AppStore.deleteApp(id : Int)
