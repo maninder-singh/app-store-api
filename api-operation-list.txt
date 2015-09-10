@@ -11,30 +11,30 @@ curl -v http://localhost:9000/users
 curl -v http://localhost:9000/comments/{app_id}
 
 # Add new user
-curl --header "Content-type: application/json" --request POST --data '{"id" : 0,"name" : "post-name","email":"post-email","contactNo":"2323232"}' -v http://localhost:9000/addUser
+curl --header "Content-type: application/json" --request POST --data '{"id" : 0,"name" : "post-name","email":"post-email","contactNo":"2323232"}' -v http://localhost:9000/users
 
 # Add new app
-curl --header "Content-type: application/json" --request POST --data '{"id":0,"name":"App 11","description":"App 11","rating":0,"developedBy":{"id":1,"name":"maninder singh","email":"maninder.singh@gmail.com","contactNo":"123123123"}}' -v http://localhost:9000/apps/add
+curl --header "Content-type: application/json" --request POST --data '{"id":0,"name":"App 11","description":"App 11","rating":0,"developedBy":{"id":1,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/apps
 
 # Add new comment to app
-curl --header "Content-type: application/json" --request POST --data '{"id":0,"appId":11,"content":"intial comment to app","commentBy":{"id":1,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/comments/add
+curl --header "Content-type: application/json" --request POST --data '{"id":0,"appId":11,"content":"intial comment to rest app 12","commentBy":{"id":10,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/comments
 
 # Update user
-curl --header "Content-type: application/json" --request POST --data  '{"id":1,"name":"manindersingh","email":"maninder.singh@gmail.com","contactNo":"123"}' -v http://localhost:9000/users/update
+curl --header "Content-type: application/json" --request PUT --data  '{"id":1,"name":"maninder singh","email":"maninder.singh@gmail.com","contactNo":"123"}' -v http://localhost:9000/users
 
 # Update app
-curl --header "Content-type: application/json" --request POST --data '{"id":11,"name":"App 11","description":"update App 11 from post request ","rating":0,"developedBy":{"id":1,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/apps/update
+curl --header "Content-type: application/json" --request PUT --data '{"id":11,"name":"App 11","description":"update App 11 from post request ","rating":0,"developedBy":{"id":1,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/apps
 
 # Update comment of app
-curl --header "Content-type: application/json" --request POST --data '{"id":0,"appId":11,"content":"update comment of app from post request ","commentBy":{"id":1,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/comments/update
+curl --header "Content-type: application/json" --request PUT --data '{"id":0,"appId":11,"content":"update comment of app from post request ","commentBy":{"id":1,"name":"","email":"","contactNo":""}}' -v http://localhost:9000/comments
 
 # Delete user
-curl --request DELETE -v http://localhost:9000/users/delete/8
+curl --request DELETE -v http://localhost:9000/users/8
 
 # Delete apps
-curl --request DELETE -v http://localhost:9000/apps/delete/11
+curl --request DELETE -v http://localhost:9000/apps/11
 
 # Delete comments
-curl --request DELETE -v http://localhost:9000/comments/delete/8
+curl --request DELETE -v http://localhost:9000/comments/9
 
 
