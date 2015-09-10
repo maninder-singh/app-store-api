@@ -19,7 +19,6 @@ libraryDependencies += "com.github.sun-opsys" % "api-doc" % "0.9.15"
 libraryDependencies ++= Seq(
   "org.webjars" %% "webjars-play" % "2.4.0-1"
 )
-
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 
