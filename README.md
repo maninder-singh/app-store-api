@@ -8,5 +8,6 @@ Steps to run application
 3. activator compile
 2. activator run
 3. Open browser and go to url : localhost:9000
+4. For api documentation go to url : http://localhost:9000/webjars/api_doc/1.0/swagger-ui/dist/index.html?url=/api/v1/api-docs
 
 Note : api-operation-list.txt file contains sample method for fetching data from web service. 
