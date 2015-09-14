@@ -1,7 +1,7 @@
 package util
 
-import play.api.db.DB
 import play.api.Play.current
+import play.api.db.DB
 
 /**
  * Created by maninders on 5/9/15.
@@ -12,14 +12,15 @@ object JdbcUtil {
 
   def insertUpdateQuery(sqlQuery : String) : Unit = {
 
-    val connection = DB.getConnection()
-    try {
-      val statement = connection.createStatement()
-      statement.executeUpdate(sqlQuery)
-    } finally {
-      if (connection != null) {
-        connection.close()
+    val connection = Option(DB.getConnection())
+
+    connection match {
+      case Some(con) => {
+        val statement = con.createStatement()
+        statement.executeUpdate(sqlQuery)
+        con.close()
       }
+      case None =>
     }
   }
 }

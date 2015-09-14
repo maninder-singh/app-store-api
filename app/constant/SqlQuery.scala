@@ -24,6 +24,4 @@ object SqlQuery {
   val GET_ALL_USER = "select id,name,email,contact_number from user"
   val INSERT_USER = "insert into user (name,email,contact_number) values ('"
   val DELETE_USER = "delete from user where id = "
-
-
 }

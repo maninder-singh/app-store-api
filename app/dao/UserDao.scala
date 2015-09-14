@@ -15,19 +15,19 @@ object UserDao {
   def getUserList(): List[User] = {
     var userListBuffer: ListBuffer[User] = new ListBuffer[User]
     val sqlQuery = SqlQuery.GET_ALL_USER
-    val connection = DB.getConnection()
-    try {
-      val statement = connection.createStatement()
-      val resultSet = statement.executeQuery(sqlQuery)
-      while (resultSet.next()) {
-        userListBuffer += User(resultSet.getInt("id"), resultSet.getString("name"),
-          resultSet.getString("email"), resultSet.getString("contact_number"))
+    val connection = Option(DB.getConnection())
+    connection match {
+      case Some(con) => {
+        val statement = con.createStatement()
+        val resultSet = statement.executeQuery(sqlQuery)
+        while (resultSet.next()) {
+          userListBuffer += User(resultSet.getInt("id"), resultSet.getString("name"),
+            resultSet.getString("email"), resultSet.getString("contact_number"))
+        }
+        con.close()
+        userListBuffer.toList
       }
-      userListBuffer.toList
-    } finally {
-      if (connection != null) {
-        connection.close()
-      }
+      case None => userListBuffer.toList
     }
   }
 

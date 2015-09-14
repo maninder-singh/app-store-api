@@ -16,25 +16,25 @@ object CommentDao {
   def getComment(appId : Int) : List[Comment] = {
     val commentBuffer : ListBuffer[Comment] = new ListBuffer[Comment]
     val sqlQuery =  SqlQuery.GET_COMMENTS_OF_APP + appId + " order by c.id desc"
-    val connection = DB.getConnection()
-    try {
-      val statement = connection.createStatement()
-      val resultSet = statement.executeQuery(sqlQuery)
-      while (resultSet.next()) {
-         val user = User(resultSet.getInt("user_id"),resultSet.getString("user_name"),
+    val connection = Option(DB.getConnection())
+
+    connection match {
+      case Some(con) => {
+        val statement = con.createStatement()
+        val resultSet = statement.executeQuery(sqlQuery)
+        while (resultSet.next()) {
+          val user = User(resultSet.getInt("user_id"),resultSet.getString("user_name"),
             resultSet.getString("email"),resultSet.getString("contact_number"))
-         commentBuffer += Comment(resultSet.getInt("id"),resultSet.getInt("app_id"),resultSet.getString("content"),user)
-      }
-      commentBuffer.toList
-    } finally {
-      if(connection != null){
-        connection.close()
-      }
+          commentBuffer += Comment(resultSet.getInt("id"),resultSet.getInt("app_id"),resultSet.getString("content"),user)
+        }
+        con.close()
+        commentBuffer.toList
+      }case None => commentBuffer.toList
     }
   }
 
   def addComment(comment : Comment) : Unit = {
-    val sqlQuery = SqlQuery.INSERT_NEW_COMMENT + comment.content + "'," + comment.commentBy.id + "," + comment.appId+ ")"
+    val sqlQuery = SqlQuery.INSERT_NEW_COMMENT + comment.content + "'," + comment.commentBy.id + "," + comment.appId + ")"
     JdbcUtil.insertUpdateQuery(sqlQuery)
   }
 

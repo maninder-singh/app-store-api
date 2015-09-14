@@ -35,4 +35,4 @@ class Application extends Controller {
     val json = generatedSwaggerDocs ++ swaggerInfoObject
     Ok(json.asJsValue)
   }
-} 
+}

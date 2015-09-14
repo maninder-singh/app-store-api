@@ -15,22 +15,23 @@ object AppDao {
   def getAppList() : List[App] = {
     var appListBuffer: ListBuffer[App] = new ListBuffer[App]
     val sqlQuery = SqlQuery.GET_ALL_APPS
-    val connection = DB.getConnection()
-    try {
-      val statement = connection.createStatement()
-      val resultSet = statement.executeQuery(sqlQuery)
-      while (resultSet.next()) {
-        val user = User(resultSet.getInt("developer_id"),resultSet.getString("user_name"),
-          resultSet.getString("email"),resultSet.getString("contact_number"))
-        var app = App(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getString("description"),
-                resultSet.getInt("rating"),user)
-        appListBuffer += app
+    val connection = Option(DB.getConnection())
+
+    connection match {
+      case Some(con) => {
+        val statement = con.createStatement()
+        val resultSet = statement.executeQuery(sqlQuery)
+        while (resultSet.next()) {
+          val user = User(resultSet.getInt("developer_id"),resultSet.getString("user_name"),
+            resultSet.getString("email"),resultSet.getString("contact_number"))
+          var app = App(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getString("description"),
+            resultSet.getInt("rating"),user)
+          appListBuffer += app
+        }
+        con.close()
+        appListBuffer.toList
       }
-      appListBuffer.toList
-    } finally {
-      if(connection != null){
-        connection.close()
-      }
+      case None => appListBuffer.toList
     }
   }
 
@@ -39,21 +40,22 @@ object AppDao {
     var appDetail : App = App(0,"","",0,User(0,"","",""))
     val sqlQuery =  SqlQuery.GET_APP_DETAILS + appId
 
-    val connection = DB.getConnection()
-    try {
-      val statement = connection.createStatement()
-      val resultSet = statement.executeQuery(sqlQuery)
-      while (resultSet.next()) {
-        val user = User(resultSet.getInt("developer_id"),resultSet.getString("user_name"),
-          resultSet.getString("email"),resultSet.getString("contact_number"))
-        appDetail = App(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getString("description"),
-          resultSet.getInt("rating"),user)
+    val connection = Option(DB.getConnection())
+
+    connection match {
+      case Some(con) => {
+        val statement = con.createStatement()
+        val resultSet = statement.executeQuery(sqlQuery)
+        while (resultSet.next()) {
+          val user = User(resultSet.getInt("developer_id"),resultSet.getString("user_name"),
+            resultSet.getString("email"),resultSet.getString("contact_number"))
+          appDetail = App(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getString("description"),
+            resultSet.getInt("rating"),user)
+        }
+        con.close()
+        appDetail
       }
-      appDetail
-    } finally {
-      if(connection != null){
-        connection.close()
-      }
+      case None => appDetail
     }
   }
 
