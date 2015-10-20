@@ -1,6 +1,8 @@
-App Store Api restful web service using scala and play 2.0 framework
+# App Store Api 
 
-Steps to run application
+ Restful web service using scala and play 2.0 framework. Swagger api is used for creating documentation through source code.
+
+# Steps to run application
 
 1. run export-user_registration.sql file to any dataabse.
 2. open conf/application.conf file and change db.default.driver,db.default.url,db.default.user,db.default.password accordingly.
