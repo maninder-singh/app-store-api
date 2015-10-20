@@ -1,6 +1,6 @@
 # App Store Api 
 
- Restful web service using scala and play 2.0 framework. Swagger api is used for creating documentation through source code.
+Restful web service using scala and play 2.4 . Swagger api is used for creating documentation through source code.  Mysql is used for data persistence ( can be change to any database by updating configuration).
 
 # Steps to run application
 
